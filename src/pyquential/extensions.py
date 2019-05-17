@@ -4,7 +4,6 @@ from multiprocessing import Pool, cpu_count
 
 import numpy as np
 import pandas as pd
-from lantern import grid
 from functional import seq
 from forbiddenfruit import curse
 
@@ -73,9 +72,9 @@ def _pmap(self, fun, args=None):
     pool = Pool(cpu_count())
     return pool.starmap(fun, zip(self, *(repeat(arg) for arg in args))) if args else pool.map(fun, self)
 
-
-def _grid(self, style='qgrid'):
-    return grid(self, style)
+#
+# def _grid(self, style='qgrid'):
+#     return grid(self, style)
 
 
 def _preduce(self, fun):
@@ -128,4 +127,4 @@ def pyquentialize():
     curse(dict, 'lkeys', _keys)
     curse(dict, 'lvalues', _values)
 
-    pd.DataFrame.grid = _grid
+    # pd.DataFrame.grid = _grid
