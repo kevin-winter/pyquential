@@ -100,16 +100,16 @@ def _adder(x):
 
 
 def pyquentialize():
-    iterable_types = [list, tuple, np.ndarray, dict, pd.Series, type({}.keys()), type({}.values())]
+    iterable_types = [list, tuple, map, zip, np.ndarray, dict, pd.Series, type({}.keys()), type({}.values())]
 
     for t in iterable_types:
-        curse(t, 'seq', _seq)
+        curse(t, 'seq', property(_seq))
         curse(t, 'map', _map)
         curse(t, 'filter', _filter)
         curse(t, 'zip', _zip)
         curse(t, 'unzip', _unzip)
-        curse(t, 'len', _len)
-        curse(t, 'sorted', _sort)
+        curse(t, 'len', property(_len))
+        curse(t, 'sorted', property(_sort))
         curse(t, 'reduce', _reduce)
         curse(t, 'chunk', _chunk)
 
@@ -118,13 +118,13 @@ def pyquentialize():
         curse(t, 'psum', _psum)
 
         if t != np.ndarray:
-            curse(t, 'maximum', _max)
-            curse(t, 'minimum', _min)
-            curse(t, 'sum', _sum)
-            curse(t, 'flatten', _flatten)
-            curse(t, 'list', _list)
+            curse(t, 'maximum', property(_max))
+            curse(t, 'minimum', property(_min))
+            curse(t, 'sum', property(_sum))
+            curse(t, 'flat', property(_flatten))
+            curse(t, 'list', property(_list))
 
-    curse(dict, 'lkeys', _keys)
-    curse(dict, 'lvalues', _values)
+    curse(dict, 'lkeys', property(_keys))
+    curse(dict, 'lvalues', property(_values))
 
     # pd.DataFrame.grid = _grid
